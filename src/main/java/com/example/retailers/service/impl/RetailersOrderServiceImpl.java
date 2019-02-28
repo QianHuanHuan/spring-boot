@@ -1,8 +1,8 @@
-package com.example.retailers.server.impl;
+package com.example.retailers.service.impl;
 
 import com.example.retailers.bean.RetailersOrder;
 import com.example.retailers.dao.RetailersOrderDao;
-import com.example.retailers.server.RetailersOrderService;
+import com.example.retailers.service.RetailersOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

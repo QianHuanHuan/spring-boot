@@ -2,7 +2,7 @@ package com.example.retailers.controller;
 
 import com.example.retailers.bean.RetailersOrder;
 import com.example.retailers.result.BaseResult;
-import com.example.retailers.server.RetailersOrderService;
+import com.example.retailers.service.RetailersOrderService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

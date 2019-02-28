@@ -1,11 +1,11 @@
-package com.example.retailers.server.impl;
+package com.example.retailers.service.impl;
 
 import com.example.retailers.bean.RetailersCommodity;
 import com.example.retailers.common.pagereq.BasePageReq;
 import com.example.retailers.common.pageresp.PageBuilder;
 import com.example.retailers.common.pageresp.Pagination;
 import com.example.retailers.dao.RetailersCommodityDao;
-import com.example.retailers.server.RetailersCommodityService;
+import com.example.retailers.service.RetailersCommodityService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

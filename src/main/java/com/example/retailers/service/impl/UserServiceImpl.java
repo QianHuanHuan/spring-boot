@@ -1,11 +1,11 @@
-package com.example.retailers.server.impl;
+package com.example.retailers.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.example.retailers.bean.RetailersUser;
 import com.example.retailers.common.RedisRepository;
 import com.example.retailers.result.BaseResult;
-import com.example.retailers.server.RetailersUserService;
-import com.example.retailers.server.UserService;
+import com.example.retailers.service.RetailersUserService;
+import com.example.retailers.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

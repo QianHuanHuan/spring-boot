@@ -1,4 +1,4 @@
-package com.example.retailers.server;
+package com.example.retailers.service;
 
 import com.example.retailers.bean.RetailersOrder;
 

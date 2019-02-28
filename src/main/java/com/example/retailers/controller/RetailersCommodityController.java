@@ -4,7 +4,7 @@ import com.example.retailers.bean.RetailersCommodity;
 import com.example.retailers.common.pagereq.BasePageReq;
 import com.example.retailers.common.pageresp.Pagination;
 import com.example.retailers.result.BaseResult;
-import com.example.retailers.server.RetailersCommodityService;
+import com.example.retailers.service.RetailersCommodityService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
