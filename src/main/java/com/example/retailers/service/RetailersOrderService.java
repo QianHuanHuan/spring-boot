@@ -7,6 +7,11 @@ import java.util.List;
 public interface RetailersOrderService {
 
 
+    /**
+     * 通过ID查询
+     * @param id
+     * @return
+     */
     RetailersOrder find(String id);
     List<RetailersOrder> finds();
     int add(RetailersOrder order);

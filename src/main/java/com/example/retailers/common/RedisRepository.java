@@ -43,6 +43,26 @@ public class RedisRepository {
     }
 
     /**
+     * 使用spring-data-redis实现incr数量改变
+     *
+     * @param key      存储的Key
+     * @param num      数量
+     * @param liveTime 存活时间
+     * @return
+     */
+    public Long incr(String key,int num, long liveTime) {
+        RedisAtomicLong entityIdCounter = new RedisAtomicLong(key, stringRedisTemplate.getConnectionFactory());
+
+        Long increment = entityIdCounter.getAndSet(num);
+
+        if ((null == increment || increment.longValue() == 0) && liveTime > 0) {// 初始设置过期时间
+            entityIdCounter.expire(liveTime, TimeUnit.SECONDS);
+        }
+
+        return increment;
+    }
+
+    /**
      * 疯转Redis的get操作
      *
      * @param key
