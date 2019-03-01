@@ -1,6 +1,9 @@
 package com.example.retailers.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.example.retailers.bean.RetailersOrder;
+import com.example.retailers.common.RedisRepository;
+import com.example.retailers.common.consts.Keep;
 import com.example.retailers.dao.RetailersOrderDao;
 import com.example.retailers.service.RetailersOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,8 @@ public class RetailersOrderServiceImpl implements RetailersOrderService {
 
     @Autowired
     RetailersOrderDao dao;
+    @Autowired
+    RedisRepository repository;
 
     @Override
     public RetailersOrder find(String id) {
@@ -37,5 +42,15 @@ public class RetailersOrderServiceImpl implements RetailersOrderService {
     @Override
     public int update(RetailersOrder order) {
         return dao.update(order);
+    }
+
+    @Override
+    public int saveToRedis(RetailersOrder order) {
+
+
+        repository.add(Keep.getKeyByName("ORDER_LIST"),JSON.toJSONString(order));
+
+
+        return 0;
     }
 }

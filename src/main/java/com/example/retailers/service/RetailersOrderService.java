@@ -17,4 +17,5 @@ public interface RetailersOrderService {
     int add(RetailersOrder order);
     int delete(RetailersOrder order);
     int update(RetailersOrder order);
+    int saveToRedis(RetailersOrder order);
 }

@@ -43,6 +43,7 @@ public class RetailersCommodityServiceImpl implements RetailersCommodityService 
 
         if (SysUtil.isNullOrEmpty(commodityJson)) {
             retailersCommodity = dao.find(id);
+            if (retailersCommodity == null) return null;
             commodityJson = JSON.toJSONString(retailersCommodity);
             repository.set(commodityKey,commodityJson,600L);
             repository.set(commodityKeyNum,retailersCommodity.getStock()+"",600L);
@@ -55,20 +56,23 @@ public class RetailersCommodityServiceImpl implements RetailersCommodityService 
     }
 
     @Override
-    public int updateFromRedis(String id,int num) {
+    public boolean updateFromRedis(String id,int num) {
         String commodityKeyNum = Keep.getKeyByName("COMMODITY_NUMBER");
         commodityKeyNum = commodityKeyNum+id;
-        String olNum =  repository.get(commodityKeyNum);
-
-        if (SysUtil.isNullOrEmpty(olNum)) {
-            findFromRedis(id);
+        String olNumStr =  repository.get(commodityKeyNum);
+        int olNum = SysUtil.toInt(olNumStr);
+        if (SysUtil.isNullOrEmpty(olNumStr)) {
+            RetailersCommodity retailersCommodity = findFromRedis(id);
+            if (retailersCommodity == null) return  false;
+            olNum = retailersCommodity.getStock();
         }
-        long end = repository.incr(commodityKeyNum,-num,600L);
-
-        if (end < 0){
-            return -1;
+        long end = repository.incr(commodityKeyNum,olNum-num,600L);
+        if (olNum-num<0){
+            repository.incr(commodityKeyNum,num,600L);
+            return false;
         }
-        return 0;
+        System.out.println(repository.get(commodityKeyNum));
+        return true;
     }
 
     @Override

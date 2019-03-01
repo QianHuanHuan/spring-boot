@@ -22,6 +22,7 @@ public class RetailersOrderController {
         return  BaseResult.findBaseResult(orderService.add(retailersOrder));
     }
 
+
     @PostMapping("/findRetailersOrder")
     @ApiOperation("查询订单")
     public RetailersOrder findRetailersOrder(String id){

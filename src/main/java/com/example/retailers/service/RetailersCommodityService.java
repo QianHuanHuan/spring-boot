@@ -9,7 +9,7 @@ public interface RetailersCommodityService {
 
     RetailersCommodity find(String id);
     RetailersCommodity findFromRedis(String id);
-    int updateFromRedis(String id,int num);
+    boolean updateFromRedis(String id,int num);
     Pagination<RetailersCommodity> finds(BasePageReq req);
     int add(RetailersCommodity commodity);
     int delete(RetailersCommodity commodity);

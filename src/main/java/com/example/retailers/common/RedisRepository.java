@@ -3,9 +3,11 @@ package com.example.retailers.common;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.support.atomic.RedisAtomicLong;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,6 +25,7 @@ public class RedisRepository {
 
     @Resource
     private JedisPool jedisPool;
+
 
     /**
      * 使用spring-data-redis实现incr自增
@@ -118,5 +121,45 @@ public class RedisRepository {
      */
     public void deleteLock(String key) {
         jedisPool.getResource().del(key);
+    }
+
+
+    /**
+     * 添加集合对象
+     * @param key
+     * @param value
+     */
+    public void add(String key,String... value){
+        stringRedisTemplate.opsForList().leftPushAll(key,value);
+    }
+
+    /**
+     * 获取list
+     * @param key
+     * return :list<String>
+     */
+    public String getList(String key){
+
+        String listStr = stringRedisTemplate.opsForList().leftPop(key);
+
+        return listStr;
+    }
+
+    /**
+     * 删除
+     * @param key
+     */
+    public void remValue(String key){
+        stringRedisTemplate.opsForList().remove(key,1,"");
+    }
+
+    /**
+     * 查看list的长度
+     * @param key
+     * return :long
+     */
+    public long getListSize(String key){
+        System.out.println("list的长度为："+jedisPool.getResource().llen(key));
+        return jedisPool.getResource().llen(key);
     }
 }
