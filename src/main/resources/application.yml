@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 7060
 spring:
   datasource:
     url: jdbc:mysql://feihuaxy.com:3306/retailers?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
