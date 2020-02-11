@@ -1,5 +1,12 @@
 server:
-  port: 7060
+  port: 7060 #原来是http的8080
+  ssl:
+    key-store: classpath:mycert.jks
+    key-store-password: O2v7X1RG
+    keyStoreType: JKS
+http: # 新加一个http的端口号配置
+  port: 7070
+
 spring:
   datasource:
     url: jdbc:mysql://feihuaxy.com:3306/retailers?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
